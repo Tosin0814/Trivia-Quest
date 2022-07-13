@@ -4,12 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Trivia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Poiret+One&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="css/main.css">
     <script defer src="js/main.js"></script>
 </head>
 <body>
-    
+    <div class="intro-page flex-ctr">
+        <h1 class="animate__animated animate__rubberBand">Welcome to Trivia Quest</h1>
+        <h1 class="animate__animated animate__tada">🧙</h1>
+        <button class="start animate__animated animate__heartBeat">CLICK TO START</button>
+        <div class="player-names hide-content">
+            <input class="player1" type="text" value="" placeholder="Enter Player One Name">
+            <input class="player2" type="text" value="" placeholder="Enter Player Two Name">
+            <button class="submit-player-name" type="button">SUBMIT</button>
+        </div>
+    </div>
+    <div class="main-content hide-content">
+        <header class="flex-ctr">
+            <h1>Trivia Quest</h1>
+        </header>
+        <main class="flex-ctr">
+            <div class="flex-container">
+                <div class="question">Questions</div>
+                <form class="options">
+                    <input class="opt spacing" type="radio" name="ans" value=""><label >...</label>
+                    <br>
+                    <br>
+                    <input class="opt spacing" type="radio" name="ans" value=""><label >...</label>
+                    <br>
+                    <br>
+                    <input class="opt spacing" type="radio" name="ans" value=""><label >...</label>
+                    <br>
+                    <br>
+                    <input class="opt spacing" type="radio" name="ans" value=""><label >...</label>
+                    <br>
+                    <br>
+                    <button class="submit-answer spacing" name="next" type="button">Next</button>
+                </form>
+            </div>
+            <div class="player-names">
+                <div class="disp-player1">Player 1:</div>
+                <div class="disp-player2">Player 2:</div>
+            </div>
+            <div class="player-scores">
+                <div class="player-score">0</div>
+                <div class="player-score">0</div>
+            </div>
+        </main>
+        <aside>
+            Instructions
+        </aside>
+        <footer>
+            Footer
+        </footer>
+    </div>
+    <div class="conclude hide-content">
+        <h1>Congratulations message</h1>
+    </div>
+
 </body>
 </html>
