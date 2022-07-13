@@ -18,6 +18,8 @@ let questionCount = null;
 let playerTurn = 1 //1 for playerOne and -1 for playerTwo
 let selected = null;
 let askedQuestions =[];
+const winScore = 3;
+const scoreDiff = 1;
 
 //Array of Question Objects
 const trivia = [
@@ -120,15 +122,16 @@ const trivia = [
 ]
 
 class Players{
-    constructor(name, score){
+    constructor(name, score, totalTurns){
         this.name = name;
         this.score = score;
+        this.totalTurns = totalTurns;
     }
 }
 
 //Player objects
-playerOne = new Players('', 0)
-playerTwo = new Players('', 0)
+playerOne = new Players('', 0, 0)
+playerTwo = new Players('', 0, 0)
 
 //Randomly select question to be rendered by assigning generated value to questionCount
 //BUG: Crashes if questions run out
@@ -214,6 +217,30 @@ const inputPlayerNames = (evt)=> {
     start.classList.add('hide-content');
 }
 
+const gameWin = () => {
+    mainContent.classList.add('hide-content');
+    conclude.classList.remove('hide-content');
+    conclude.classList.add('flex-ctr')
+}
+
+const gameDraw = () => {
+    mainContent.classList.add('hide-content');
+    conclude.classList.remove('hide-content');
+    conclude.classList.add('flex-ctr')
+}
+
+const afterRun = () => {
+    if ((askedQuestions.length === trivia.length)) {
+        gameDraw()
+    }
+    if ((playerOne.score >= winScore || playerTwo.score >= winScore) 
+        && (playerOne.totalTurns === playerTwo.totalTurns) 
+        && ((playerOne.score - playerTwo.score) >= scoreDiff || (playerTwo.score - playerOne.score) >= scoreDiff) 
+        ) {
+            gameWin()
+    }
+}
+
 // Render initial state of main page
 const renderMainPage = (evt) => {
     introButton = evt.target
@@ -247,15 +274,15 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerTwoTurn()
-        }, 3000)
-        
+        }, 1000)//Change to 3000
+        playerOne.totalTurns++
     } else if (playerTurn === -1) {
         selected = checkSelect();
         if (selected !== "none") {
             if (selected === trivia[questionCount].answer) {
                 alert('correct')
                 playerTwo.score++;
-                playerScores[1].innerHTML = playerOne.score;
+                playerScores[1].innerHTML = playerTwo.score;
             }else if (selected !== trivia[questionCount].answer) {
                 alert('incorrect')
             }
@@ -266,13 +293,10 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerOneTurn()
-        }, 3000)
+        }, 1000)//Change to 3000
+        playerTwo.totalTurns++
     }
-    if (playerOne.score === 2 || playerTwo.score === 2) {
-        mainContent.classList.add('hide-content');
-        conclude.classList.remove('hide-content');
-        conclude.classList.add('flex-ctr')
-    }
+    afterRun()
 }
 
 
