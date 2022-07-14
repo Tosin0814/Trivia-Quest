@@ -23,6 +23,7 @@ body{
 
 .intro-page{
     height: 100vh;
+    text-align: center;
 }
 
 .intro-page > h1{
@@ -33,16 +34,20 @@ body{
     text-shadow: 2px 2px 3px black;
 }
 
-.animate__rubberBand{
+.intro-page > .animate__rubberBand{
     animation-delay: 1000ms;
 }
 
-.animate__tada{
+.intro-page > .animate__tada{
     animation-delay: 1800ms;
 }
 
-.animate__heartBeat{
+.intro-page > .animate__heartBeat{
     animation-delay: 2500ms;
+}
+
+.animate__heartBeat{
+    animation-delay: 3000ms;
 }
 
 .start{
@@ -133,21 +138,56 @@ main{
 .flex-container{
     display: flex;
     flex-direction: column;
-    background-color: blueviolet;
     width: 65%;
     height: 65%;
     margin: 0 auto;
 }
 
+.flex-container > .question{
+    background-color: blueviolet;
+}
+
+.flex-container-row{
+    display: flex;
+    flex-direction: column;
+    /* background-color: plum; */
+    height: 100%;
+}
+
 .question{
     height: 25%;
-    /* background-color: purple; */
     justify-content: center;
+    padding: 20px 5px 5px 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .options{
-    height: 75%;
-    background-color: plum;
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(221, 160, 221, 0.9);
+}
+
+.feedback-container{
+    width: 100%;
+    height: 100%;
+}
+
+.feedback-message-correct{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(173,255,47, 0.9);
+    /* font-family: 'Poiret One', cursive; */
+    font-weight: bold;
+}
+
+.feedback-message-incorrect{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,0,0, 0.9);
+    /* font-family: 'Poiret One', cursive; */
+    font-weight: bold;
 }
 
 .opt,.submit-answer{
@@ -162,7 +202,6 @@ main{
     margin: 5px 30px 0 30px;
     border: 1px solid black;
     border-radius: 5px;
-    /* color: purple; */
 }
 
 .win{
@@ -204,6 +243,7 @@ footer{
     font-size: 100px;
     font-weight: bold;
     text-shadow: 2px 2px 3px black;
+    color: white;
 }
 
 .conclude > button{
@@ -226,4 +266,8 @@ footer{
 
 .hide-content{
     display: none;
+}
+
+.vanish{
+    opacity: 0;
 }
