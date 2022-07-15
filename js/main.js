@@ -25,8 +25,9 @@ let questionCount = null;
 let playerTurn = 1 //1 for playerOne and -1 for playerTwo
 let selected = null;
 let askedQuestions =[];
-const winScore = 5;
+const winScore = 3;
 const scoreDiff = 1;
+const time = 3000;
 
 //Array of Question Objects
 const trivia = [
@@ -260,39 +261,50 @@ const clearFeedbackClasses = () => {
 
 // What happens after game is won?
 const gameWin = () => {
-    mainContent.classList.add('hide-content');
-    conclude.classList.remove('hide-content');
-    conclude.classList.add('flex-ctr')
-    concludeMessage.classList.add('animate__animated')
-    concludeMessage.classList.add('animate__bounce')
-    if (playerOne.score > playerTwo.score) {
-        concludeMessage.innerHTML = `${playerOne.name} wins!`
-    } else if (playerTwo.score > playerOne.score) {
-        concludeMessage.innerHTML = `${playerTwo.name} wins!`
-    }
-    replay.classList.add('animate__animated')
-    replay.classList.add('animate__heartBeat')
+    setTimeout(function(){
+        mainContent.classList.add('hide-content');
+        conclude.classList.remove('hide-content');
+        conclude.classList.add('flex-ctr')
+        concludeMessage.classList.add('animate__animated')
+        concludeMessage.classList.add('animate__bounce')
+        if (playerOne.score > playerTwo.score) {
+            concludeMessage.innerHTML = `${playerOne.name} wins!`
+        } else if (playerTwo.score > playerOne.score) {
+            concludeMessage.innerHTML = `${playerTwo.name} wins!`
+        }
+        replay.classList.add('animate__animated')
+        replay.classList.add('animate__heartBeat')
+    }, time)
 }
 
 // What happens if game is a tie
 const gameDraw = () => {
-    mainContent.classList.add('hide-content');
-    conclude.classList.remove('hide-content');
-    conclude.classList.add('flex-ctr')
-    concludeMessage.classList.add('animate__animated')
-    concludeMessage.classList.add('animate__bounce')
-    concludeMessage.innerHTML = `Tie Game!`
-    replay.classList.add('animate__animated')
-    replay.classList.add('animate__heartBeat')
+    setTimeout(function(){
+        mainContent.classList.add('hide-content');
+        conclude.classList.remove('hide-content');
+        conclude.classList.add('flex-ctr')
+        concludeMessage.classList.add('animate__animated')
+        concludeMessage.classList.add('animate__bounce')
+        concludeMessage.innerHTML = `Tie Game!`
+        replay.classList.add('animate__animated')
+        replay.classList.add('animate__heartBeat')
+    }, time)
+    
 }
 
 // Choose what is rendered after game is finished (Determine winner)
 const afterRun = () => {
     if ((askedQuestions.length === trivia.length)) {
-        gameDraw()
+        if (playerOne.score === playerTwo.score) {
+            gameDraw()
+        } else {
+            gameWin()
+        }
+        
     }
     if ((playerOne.score >= winScore || playerTwo.score >= winScore) 
-        && ((playerOne.totalTurns === playerTwo.totalTurns) /*&& playerTurn === */) 
+        && ((playerOne.totalTurns === playerTwo.totalTurns) 
+            || ((playerOne.score === winScore) && (playerOne.score - playerTwo.score !== 1))) 
         && ((playerOne.score - playerTwo.score) >= scoreDiff || (playerTwo.score - playerOne.score) >= scoreDiff) 
         ) {
             gameWin()
@@ -363,7 +375,7 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerTwoTurn()
-        }, 3000)
+        }, time)
         playerOne.totalTurns++
     } else if (playerTurn === -1) {
         selected = checkSelect();
@@ -383,7 +395,7 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerOneTurn()
-        }, 3000)
+        }, time)
         playerTwo.totalTurns++
     }
     afterRun()
