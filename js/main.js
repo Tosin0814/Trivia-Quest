@@ -346,10 +346,18 @@ const renderMainPage = (evt) => {
     introPage.classList.add('hide-content');
     introPage.classList.remove('flex-ctr');
     mainContent.classList.remove('hide-content')
-    playerOne.name = playerName1.value;
-    playerTwo.name = playerName2.value;
-    displayPlayerName1.innerHTML = playerName1.value;
-    displayPlayerName2.innerHTML = playerName2.value;
+    if (playerName1.value === '') {
+        playerOne.name = 'Stranger One'
+    } else {
+        playerOne.name = playerName1.value;
+    }
+    if (playerName2.value === '') {
+        playerTwo.name = 'Stranger Two'
+    } else {
+        playerTwo.name = playerName2.value;
+    }
+    displayPlayerName1.innerHTML = playerOne.name
+    displayPlayerName2.innerHTML = playerTwo.name;
     generateQuestionCount()
     displayQuestions(questionCount)
     playerOneTurn()
