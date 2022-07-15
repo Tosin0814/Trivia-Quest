@@ -25,7 +25,7 @@ let questionCount = null;
 let playerTurn = 1 //1 for playerOne and -1 for playerTwo
 let selected = null;
 let askedQuestions =[];
-const winScore = 3;
+const winScore = 5;
 const scoreDiff = 1;
 
 //Array of Question Objects
