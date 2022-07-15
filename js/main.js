@@ -5,6 +5,9 @@ const playerName1 = document.querySelector('.player1');
 const playerName2 = document.querySelector('.player2');
 const submitPlayerNames = document.querySelector('.submit-player-name');
 const mainContent = document.querySelector('.main-content');
+const sideBar = document.querySelector("#my-side-panel")
+const openBtn = document.querySelector('.openbtn')
+const closeBtn = document.querySelector('.closebtn')
 const question = document.querySelector('.question')
 const option = document.querySelectorAll('.opt')
 const options = document.querySelector('.options')
@@ -138,7 +141,6 @@ playerOne = new Players('', 0, 0)
 playerTwo = new Players('', 0, 0)
 
 //Randomly select question to be rendered by assigning generated value to questionCount
-//BUG: Crashes if questions run out (afterrun draw function fixes this)
 const generateQuestionCount = () => {
     do {
         if (askedQuestions.length === trivia.length) {
@@ -221,6 +223,7 @@ const inputPlayerNames = (evt)=> {
     start.classList.add('hide-content');
 }
 
+// Render message when the correct answer is selected
 const correctAnswer = () => {
     options.classList.add('hide-content')
     feedback.classList.remove('hide-content')
@@ -231,6 +234,7 @@ const correctAnswer = () => {
     feedback.innerHTML = `<h2>Correct!</h2><p>The answer is: ${trivia[questionCount].answer}</p>`
 }
 
+// Render message when the wrong answer is selected
 const incorrectAnswer = () => {
     options.classList.add('hide-content')
     feedback.classList.remove('hide-content')
@@ -241,6 +245,8 @@ const incorrectAnswer = () => {
     feedback.innerHTML = `<h2>Wrong!</h2><p>The correct answer is: ${trivia[questionCount].answer}</p>`
 }
 
+
+// Rerender Options div and hide feedback div
 const clearFeedbackClasses = () => {
     options.classList.remove('hide-content')
     feedback.classList.add('hide-content')
@@ -251,6 +257,8 @@ const clearFeedbackClasses = () => {
     feedback.classList.remove('animate__shakeX')
 }
 
+
+// What happens after game is won?
 const gameWin = () => {
     mainContent.classList.add('hide-content');
     conclude.classList.remove('hide-content');
@@ -266,6 +274,7 @@ const gameWin = () => {
     replay.classList.add('animate__heartBeat')
 }
 
+// What happens if game is a tie
 const gameDraw = () => {
     mainContent.classList.add('hide-content');
     conclude.classList.remove('hide-content');
@@ -277,18 +286,29 @@ const gameDraw = () => {
     replay.classList.add('animate__heartBeat')
 }
 
+// Choose what is rendered after game is finished (Determine winner)
 const afterRun = () => {
     if ((askedQuestions.length === trivia.length)) {
         gameDraw()
     }
     if ((playerOne.score >= winScore || playerTwo.score >= winScore) 
-        && (playerOne.totalTurns === playerTwo.totalTurns) 
+        && ((playerOne.totalTurns === playerTwo.totalTurns) /*&& playerTurn === */) 
         && ((playerOne.score - playerTwo.score) >= scoreDiff || (playerTwo.score - playerOne.score) >= scoreDiff) 
         ) {
             gameWin()
     }
 }
 
+/* Set the width of the sidebar to 250px (show it) */
+const openNav = () => {
+    sideBar.style.width = "280px";
+}
+  
+/* Set the width of the sidebar to 0 (hide it) */
+const closeNav = () => {
+    sideBar.style.width = "0";
+}
+// Replay game
 const reload = () => {
     conclude.classList.add('hide-content');
     conclude.classList.remove('flex-ctr');
@@ -323,6 +343,7 @@ const renderMainPage = (evt) => {
     playerOneTurn()
 }
 
+// Perform actions after submitting selected answer
 const submit = (evt) => {
     if (playerTurn === 1) {
         selected = checkSelect();
@@ -342,7 +363,7 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerTwoTurn()
-        }, 3000)//Change to 3000
+        }, 3000)
         playerOne.totalTurns++
     } else if (playerTurn === -1) {
         selected = checkSelect();
@@ -362,7 +383,7 @@ const submit = (evt) => {
             generateQuestionCount()
             displayQuestions(questionCount)
             playerOneTurn()
-        }, 3000)//Change to 3000
+        }, 3000)
         playerTwo.totalTurns++
     }
     afterRun()
@@ -376,3 +397,8 @@ submitPlayerNames.addEventListener('click', renderMainPage);
 submitAnswer.addEventListener('click', submit)
 
 replay.addEventListener('click', reload)
+
+
+closeBtn.addEventListener('click', closeNav)
+
+openBtn.addEventListener('click', openNav)
