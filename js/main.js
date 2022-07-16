@@ -25,107 +25,187 @@ let questionCount = null;
 let playerTurn = 1 //1 for playerOne and -1 for playerTwo
 let selected = null;
 let askedQuestions =[];
-const winScore = 3;
+const winScore = 5;
 const scoreDiff = 1;
 const time = 3000;
 
 //Array of Question Objects
 const trivia = [
     {
-      prompt: "1) What is the ami oro of Tosin's Last name?",
-      optA:"D M D M",
-      optB:"D M M R",
-      optC:"R M M D",
-      optD:"R M D M",
-      answer: "D M M R"
+      prompt: "Who played Mrs. Robinson in The Graduate?",
+      optA:"Katherine Rose",
+      optB:"Anne Bancroft",
+      optC:"Elizabeth Wilson",
+      optD:"Oprah Winfrey",
+      answer: "Anne Bancroft"
     },
     {
-      prompt: "2) Tosin's Bachelor's Degree is in:",
-      optA:"Computer Science",
-      optB:"Computer Engineering",
-      optC:"Mechanical Engineering",
-      optD:"Statistics",
-      answer: "Mechanical Engineering"
+      prompt: "What was the first feature-length animated movie ever released?",
+      optA:"Shrek",
+      optB:"The Little Mermaid",
+      optC:"Snow White and the Seven Dwarfs",
+      optD:"Cinderella",
+      answer: "Snow White and the Seven Dwarfs"
     },
     {
-      prompt: "3) The capital of Nigeria is:",
-      optA:"Lagos",
-      optB:"Abuja",
-      optC:"Benin",
-      optD:"Anambra",
-      answer: "Abuja"
+      prompt: "In The Matrix, does Neo take the blue pill or the red pill?",
+      optA:"Blue",
+      optB:"Red",
+      optC:"Both",
+      optD:"Neither",
+      answer: "Red"
     },
     {
-      prompt: "4) The best month of the year is:",
-      optA:"January",
-      optB:"June",
-      optC:"December",
-      optD:"August",
-      answer: "August"
+      prompt: "What's the name of the skyscraper in Die Hard?",
+      optA:"Empire State Building",
+      optB:"Central Park Tower",
+      optC:"Devon Tower",
+      optD:"Nakatomi Plaza",
+      answer: "Nakatomi Plaza"
     },
     {
-      prompt: "5) What was Tosin's business called?",
-      optA:"Tee's Place",
-      optB:"The Spot",
-      optC:"Orion's",
-      optD:"Chef Tee's Spot",
-      answer: "Orion's"
+      prompt: "What flavor of Pop Tarts does Buddy the Elf use in his spaghetti in Elf? ",
+      optA:"Peanut",
+      optB:"Strawberry",
+      optC:"Chocolate",
+      optD:"Vanilla",
+      answer: "Chocolate"
     },
     {
-      prompt: "6) What is Tosin's pet peeve?",
-      optA:"Dumbasses",
-      optB:"Sticky surfaces",
-      optC:"Being kept waiting",
-      optD:"Being put on mute",
-      answer: "Being kept waiting"
+      prompt: "The head of what kind of animal is front-and-center in an infamous scene from The Godfather?",
+      optA:"A lion",
+      optB:"A dog",
+      optC:"A horse",
+      optD:"A bull",
+      answer: "A horse"
     },
     {
-      prompt: "7) From the list, Who is Tosin's favourite celeb?",
-      optA:"Dwayne Johnson",
-      optB:"Tom Cruise",
-      optC:"Robert Downey Jr.",
-      optD:"Kevin Hart",
-      answer: "Kevin Hart"
+      prompt: "What famous L.A. landmark is heavily featured in Rebel Without a Cause?",
+      optA:"Staples Center",
+      optB:"Venice Canals Walkway",
+      optC:"Hollywood Walk of Fame",
+      optD:"Griffith Observatory",
+      answer: "Griffith Observatory"
     },
     {
-      prompt: "8) The company that licensed Tosin as a certified professional is:",
-      optA:"Dassault Systemes",
-      optB:"Autodesk",
-      optC:"Professional Engineers Ontario",
-      optD:"True Inventors",
-      answer: "Dassault Systemes"
+      prompt: "Who played Martin Luther King Jr. in the 2014 biopic Selma?",
+      optA:"David Oyelowo",
+      optB:"Sidney Poitier",
+      optC:"Morgan Freeman",
+      optD:"Denzel Washington",
+      answer: "David Oyelowo"
     },
     {
-      prompt: "9) What is Tosin's favourite color?",
-      optA:"Red",
-      optB:"Black",
-      optC:"Fuchsia Pink",
-      optD:"Purple",
-      answer: "Purple"
+      prompt: "What Hollywood movie star plays himself in Zombieland?",
+      optA:"Indiana Jones",
+      optB:"Woody Harrelson",
+      optC:"Emma Stone",
+      optD:"Bill Murray",
+      answer: "Bill Murray"
     },
     {
-      prompt: "10) Tosin's best Youtube coding teacher is:",
-      optA:"Mosh Hamedani",
-      optB:"Mike Dane",
-      optC:"Free Code Camp",
-      optD:"Joshua Fluke",
-      answer: "Mike Dane"
+      prompt: "What is the highest-grossing R-rated movie of all time?",
+      optA:"The Matrix Reloaded",
+      optB:"Joker",
+      optC:"Deadpool",
+      optD:"Deadpool 2",
+      answer: "Joker"
     },
     {
-      prompt: "11) What company traps its users in an ecosystem?",
-      optA:"Google",
-      optB:"Microsoft",
-      optC:"Apple",
-      optD:"Samsung",
-      answer: "Apple"
+      prompt: "What 1994 crime film revitalized John Travolta's career?",
+      optA:"Perfect",
+      optB:"From Paris with Love",
+      optC:"The poison Rose",
+      optD:"Pulp Fiction",
+      answer: "Pulp Fiction"
     },
     {
-      prompt: "12) The best university in Nigeria is:",
-      optA:"Obafemi Awolowo University",
-      optB:"Covenant University",
-      optC:"University of Ibadan",
-      optD:"Afe Babalola University",
-      answer: "University of Ibadan"
+      prompt: "What animated classic was the first film of the late-twentieth-century 'Disney Renaissance?'",
+      optA:"Sleeping Beauty",
+      optB:"Cinderella",
+      optC:"The Little Mermaid",
+      optD:"Snow White",
+      answer: "The Little Mermaid"
+    },
+    {
+        prompt: "Aaron Sorkin won an Oscar for writing what 2010 drama about the creation of Facebook?",
+        optA:"The Social Network",
+        optB:"The Rise of an Era",
+        optC:"Going Public",
+        optD:"The Facebook",
+        answer: "The Social Network"
+    },
+    {
+        prompt: "Who is the first actor to play Jack Ryan on screen?",
+        optA:"Harrison Ford",
+        optB:"Alec Baldwin",
+        optC:"Ben Affleck",
+        optD:"Chris Pine",
+        answer: "Alec Baldwin"
+    },
+    {
+        prompt: "Joaquin Phoenix received his first Oscar nomination for playing Roman emperor Commodus in what 2000 Oscar-winning epic?",
+        optA:"Spartacus",
+        optB:"The Eagle",
+        optC:"Gladiator",
+        optD:"The Last Legion",
+        answer: "Gladiator"
+    },
+    {
+        prompt: "The Battle of Thermopylae served as the basis of what highly stylized 2006 smash hit swords-and-sandals action flick?",
+        optA:"The Legend of Hercules",
+        optB:"Pompei",
+        optC:"Spartacus",
+        optD:"300",
+        answer: "300"
+    },
+    {
+        prompt: "What is the highest-grossing foreign-language film at the U.S. box office?",
+        optA:"The Passion of the Christ",
+        optB:"Hero",
+        optC:"Crouching Tiger, Hidden Dragon",
+        optD:"Parasite",
+        answer: "The Passion of the Christ"
+    },
+    {
+        prompt: "Who wrote the screenplay for Rocky?",
+        optA:"Dwayne Johnson",
+        optB:"Sylvester Stallone",
+        optC:"Quentin Tarantino",
+        optD:"Spike Lee",
+        answer: "Sylvester Stallone"
+    },
+    {
+        prompt: "What was Quentin Tarantino's first feature as writer/director?",
+        optA:"Kill Bill",
+        optB:"Once Upon a Time in Hollywood",
+        optC:"Reservoir Dogs",
+        optD:"From Dusk Till Dawn",
+        answer: "Reservoir Dogs"
+    },
+    {
+        prompt: "Who played the Wicked Witch of the West in The Wizard of Oz?",
+        optA:"Angelina Jolie",
+        optB:"Jennifer Lopez",
+        optC:"Amber Heard",
+        optD:"Margaret Hamilton",
+        answer: "Margaret Hamilton"
+    },
+    {
+        prompt: "What Martin Scorsese movie holds the all-time record for F-bombs?",
+        optA:"The Wolf of Wall Street",
+        optB:"Alpha Dog",
+        optC:"Straight Outta Compton",
+        optD:"Casino",
+        answer: "The Wolf of Wall Street"
+    },
+    {
+        prompt: "Who played the Green Goblin in 2002 box-office smash Spider-Man?",
+        optA:"Steve Blum",
+        optB:"Willem Dafoe",
+        optC:"Jorma Taccone",
+        optD:"Rino Romano",
+        answer: "Willem Dafoe"
     },
 ]
 
@@ -154,11 +234,10 @@ const generateQuestionCount = () => {
     // console.log(askedQuestions)
 }
 
-
 // Add styling and modify HTML when it is player one's turn
 const playerOneTurn = () => {
     playerTurn = 1
-    displayPlayerName1.style.backgroundColor = 'lightgreen'
+    displayPlayerName1.style.backgroundColor = 'skyblue'
     displayPlayerName2.style.backgroundColor = ''
     displayPlayerName1.innerHTML = `${playerOne.name}'s Turn`
     displayPlayerName2.innerHTML = playerTwo.name
@@ -168,7 +247,7 @@ const playerOneTurn = () => {
 const playerTwoTurn = () => {
     playerTurn = -1
     displayPlayerName1.style.backgroundColor = ''
-    displayPlayerName2.style.backgroundColor = 'lightgreen'
+    displayPlayerName2.style.backgroundColor = 'skyblue'
     displayPlayerName1.innerHTML = playerOne.name
     displayPlayerName2.innerHTML = `${playerTwo.name}'s Turn`
 }
@@ -212,11 +291,6 @@ function checkSelect() {
     return select;
 }
 
-//function to output message if no radio button is selected on click
-function noSelect(){
-    alert("Oops! You did not select an option");
-}
-
 // Render enter player names page and hide start button
 const inputPlayerNames = (evt)=> {
     playerNames.classList.remove('hide-content');
@@ -246,7 +320,6 @@ const incorrectAnswer = () => {
     feedback.innerHTML = `<h2>Wrong!</h2><p>The correct answer is: ${trivia[questionCount].answer}</p>`
 }
 
-
 // Rerender Options div and hide feedback div
 const clearFeedbackClasses = () => {
     options.classList.remove('hide-content')
@@ -257,7 +330,6 @@ const clearFeedbackClasses = () => {
     feedback.classList.remove('animate__heartBeat')
     feedback.classList.remove('animate__shakeX')
 }
-
 
 // What happens after game is won?
 const gameWin = () => {
@@ -311,12 +383,12 @@ const afterRun = () => {
     }
 }
 
-/* Set the width of the sidebar to 250px (show it) */
+// Set the width of the sidebar to 250px (show it)
 const openNav = () => {
     sideBar.style.width = "280px";
 }
   
-/* Set the width of the sidebar to 0 (hide it) */
+// Set the width of the sidebar to 0 (hide it)
 const closeNav = () => {
     sideBar.style.width = "0";
 }
