@@ -1,3 +1,5 @@
+
+```
 1) The following constants are required
     1.1) An array of objects to store the questions and answers.
     1.2) An object for each player.
@@ -47,4 +49,4 @@
     9.3) The first random question is rendered and the possible options are displayed using radio buttons
     9.4) Player One plays first, hence, Player One's Turn is highlighted in some way and Player Two's name is rendered normally
 
-    
+```
