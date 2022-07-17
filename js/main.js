@@ -53,7 +53,6 @@ const generateQuestionCount = () => {
         }
     } while (askedQuestions.includes(questionCount));
     askedQuestions.push(questionCount)
-    // console.log(askedQuestions)
 }
 
 // Add styling and modify HTML when it is player one's turn
