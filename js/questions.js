@@ -84,7 +84,7 @@ const trivia = [
       prompt: "What 1994 crime film revitalized John Travolta's career?",
       optA:"Perfect",
       optB:"From Paris with Love",
-      optC:"The poison Rose",
+      optC:"The Poison Rose",
       optD:"Pulp Fiction",
       answer: "Pulp Fiction"
     },
