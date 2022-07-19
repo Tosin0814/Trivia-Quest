@@ -11,6 +11,17 @@ body{
     background-repeat: no-repeat;
 }
 
+@media only screen and (max-width: 570px) {
+    body{
+        background-size: auto;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    body{
+        background-size: auto;
+    }
+}
 
 
 .flex-ctr{
