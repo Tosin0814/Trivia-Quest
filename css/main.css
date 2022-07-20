@@ -92,7 +92,6 @@ body{
     margin-bottom: 10px;
     font-size: 20px;
     text-align: center;
-    border-radius: 10px;
     border: 2px solid rgba(0,0,0,0.8);
     border-radius: 20px;
     background-color: rgba(0,0,0,0.6);
@@ -121,13 +120,14 @@ body{
     font-family: Helvetica;
     display: grid;
     grid-template-columns: 50px 1fr;
-    grid-template-rows: 100px 6fr 100px 50px;
+    grid-template-rows: 100px 1fr 100px 50px;
     grid-template-areas: 
         "hdr hdr"
         "aside main"
         "aside data"
         "ftr ftr";
 }
+
 
 header{
     grid-area: hdr;
@@ -217,6 +217,7 @@ main{
 .feedback-message-correct{
     width: 100%;
     height: 100%;
+    padding: 10px;
     background-color: rgba(173,255,47, 0.9);
     font-weight: bold;
 }
@@ -224,6 +225,7 @@ main{
 .feedback-message-incorrect{
     width: 100%;
     height: 100%;
+    padding: 10px;
     background-color: rgba(255,0,0, 0.9);
     font-weight: bold;
 }
@@ -379,4 +381,103 @@ footer{
   
 .openbtn:hover {
     background-color: #444;
+}
+
+
+@media only screen and (max-width: 400px) {
+    .intro-page > h1{
+        margin: 5px;
+        font-size: 60px;
+    }
+
+    .start{
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+        font-size: 15px;
+    }
+
+    .player-names > input{
+        width: 200px;
+        height: 50px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        border-radius: 15px;
+    }
+    
+    .player-names > button{
+        width: 150px;
+        height: 50px;
+        background-color: rgba(0,0,0,0.6);
+        border: 5px solid rgba(0,0,0,0.8);
+        border-radius: 10px;
+        font-size: 15px;
+    }
+
+    .main-content{
+        grid-template-columns:1fr;
+        grid-template-rows: 100px 50px 1fr 100px 50px;
+        grid-template-areas: 
+            "hdr"
+            "aside"
+            "main"
+            "data"
+            "ftr";
+    }
+
+    .flex-container{
+        width: 75%;
+        height: 75%;
+        margin: 0 auto;
+    }
+
+    header{
+        font-size: 30px;
+    }
+    aside{
+        font-size: 12px;
+    }
+    .question{
+        padding: 10px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+    .options{
+        padding-top: 5px;
+        font-size: 12px;
+    }
+    .submit-answer{
+        border-radius: 5px;
+        width: 80px;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+    .player-names-display > div{
+        width: 100px;
+        font-size: 12px;
+        padding: 5px;
+        margin: 10px 15px 0 15px;
+        border: 1px solid black;
+        border-radius: 3px;
+    }
+    .player-scores > div{
+        width: 100px;
+        padding: 2px;
+        margin: 0 15px;
+        border-radius: 3px;
+        background-color: gainsboro;
+    }
+    footer{
+        font-size: 15px;
+    }
+    .conclude > h1{
+        font-size: 50px;
+    }
+    
+    .conclude > button{
+        width: 80px;
+        height: 25px;
+        border-radius: 6px;
+        font-size: 16px;
+    }
 }
