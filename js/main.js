@@ -43,17 +43,16 @@ class Players{
 playerOne = new Players('', 0, 0)
 playerTwo = new Players('', 0, 0)
 
-//Randomly select question to be rendered by assigning generated value to questionCount
+//Randomly select question to be rendered by assigning generated value to questionCount (recursive)
 const generateQuestionCount = () => {
-    do {
-        if (askedQuestions.length === trivia.length) {
-            break
-        }else{
-        questionCount = Math.floor(Math.random() * ((trivia.length-1) + 1));
-        }
-    } while (askedQuestions.includes(questionCount));
-    askedQuestions.push(questionCount)
-}
+    questionCount = Math.floor(Math.random() * ((trivia.length - 1) + 1));
+    if (!(askedQuestions.includes(questionCount))) {
+      askedQuestions.push(questionCount)
+      return questionCount
+    } else if ((askedQuestions.includes(questionCount))) {
+      return generateQuestionCount();
+    }
+  }
 
 // Add styling and modify HTML when it is player one's turn
 const playerOneTurn = () => {
