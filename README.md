@@ -57,13 +57,12 @@
 
         https://tosin0814.github.io/Trivia-Quest/
 
-- The game is to be run on devices with larger screen sizes (Tablets and above). It is not mobile ready.
 
 <br>
 <br>
 
 # Next Steps
-- Make the game mobile friendly.
+- Make the game more mobile friendly.
 - Get a larger list of questions from an external API.
 - Give the user categories of questions to select from.
 - Add a countdown timer to the game.
